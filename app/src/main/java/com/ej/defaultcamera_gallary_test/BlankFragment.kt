@@ -22,6 +22,16 @@ class BlankFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.textView.setOnClickListener {
+            val fragment = QrFragment.newInstance()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, fragment, QrFragment.TAG)
+                .commit()
+        }
+    }
+
     companion object {
 
         @JvmStatic
