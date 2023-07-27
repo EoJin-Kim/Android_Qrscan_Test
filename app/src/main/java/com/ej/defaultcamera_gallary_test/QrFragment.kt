@@ -44,6 +44,7 @@ class QrFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result : IntentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if(result !=null) {
+            val test = data?.getStringExtra("sdfd")
             if(result.contents == null) {
                 // qr코드 없을 때
                 Log.d("#####################",result.contents.toString())
