@@ -28,7 +28,8 @@ class QrFragment : Fragment() {
         integrator.setBeepEnabled(false) // 스캔 시 소리
         integrator.setOrientationLocked(false) // 가로,세로 모드 고정
         integrator.captureActivity = QrScannerActivity::class.java //커스텀 스캐너 액티비티
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE) //원하는 바코드 형식
+//        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE) //원하는 바코드 형식
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES) //원하는 바코드 형식
         integrator.setPrompt("Scan QR code") //스캔 하단 문구
         integrator.initiateScan() // 스캐너 실행
 
@@ -41,24 +42,6 @@ class QrFragment : Fragment() {
 
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val result : IntentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-        if(result !=null) {
-            val test = data?.getStringExtra("sdfd")
-            if(result.contents == null) {
-                // qr코드 없을 때
-                Log.d("#####################",result.contents.toString())
-                Toast.makeText(requireContext() as Activity?,"cancelled", Toast.LENGTH_LONG).show()
-            } else {
-                //qr코드에 주소가 있을때
-                Log.d("#####################",result.contents.toString())
-                Toast.makeText(requireContext() as Activity?,result.contents.toString(), Toast.LENGTH_LONG).show()
-
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
-        }
-    }
 
     companion object {
 

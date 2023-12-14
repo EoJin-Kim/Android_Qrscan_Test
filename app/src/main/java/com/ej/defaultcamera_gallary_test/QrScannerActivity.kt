@@ -58,7 +58,7 @@ class QrScannerActivity : AppCompatActivity(){
         capture.onRequestPermissionsResult(requestCode,permissions, grantResults)
     }
     var idx = 0;
-    fun getBarcodeCallBack(): BarcodeCallback {
+    private fun getBarcodeCallBack(): BarcodeCallback {
         return object : BarcodeCallback {
             override fun barcodeResult(result: BarcodeResult?) {
                 result?.let {
@@ -67,7 +67,6 @@ class QrScannerActivity : AppCompatActivity(){
                     val intent = Intent()
                     intent.putExtra("sdfd",qrText)
                     setResult(RESULT_OK,intent)
-                    finish()
                 }
             }
 
